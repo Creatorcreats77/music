@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('album', function (Blueprint $table) {
+        Schema::create('subscription', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('artist_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('artist_id')->references('id')->on('artist')->OnDelete('cascade');
-            $table->string('name');
-            $table->string('image')->nullable();
+            $table->date('start');
+            $table->date('end');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('album');
+        Schema::dropIfExists('subscription');
     }
 };
